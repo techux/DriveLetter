@@ -13,20 +13,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    username: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
-    },
-    googleToken: {
+    accessToken: {
       type: String,
       default: null,
     },
@@ -39,13 +26,13 @@ const userSchema = new mongoose.Schema(
 5;
 
 userSchema.pre("save", function (next) {
-  if (this.googleToken) {
+  if (this.accessToken) {
     const cipher = crypto.createCipher(
       "aes256",
-      process.env.GOOGLE_TOKEN_SECRET_KEY
+      process.env.GOOGLE_TOKEN_ENCRYPT_KEY
     );
-    this.googleToken = Buffer.concat([
-      cipher.update(this.googleToken),
+    this.accessToken = Buffer.concat([
+      cipher.update(this.accessToken),
       cipher.final(),
     ]);
   }
@@ -54,13 +41,13 @@ userSchema.pre("save", function (next) {
 
 userSchema.post("find", function (docs) {
   docs.forEach((doc) => {
-    if (doc.googleToken) {
+    if (doc.accessToken) {
       const decipher = crypto.createDecipher(
         "aes256",
-        process.env.GOOGLE_TOKEN_SECRET_KEY
+        process.env.GOOGLE_TOKEN_ENCRYPT_KEY
       );
-      doc.googleToken = Buffer.concat([
-        decipher.update(doc.googleToken),
+      doc.accessToken = Buffer.concat([
+        decipher.update(doc.accessToken),
         decipher.final(),
       ]).toString();
     }
