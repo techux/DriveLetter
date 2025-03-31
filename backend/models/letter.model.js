@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 
 const letterSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
     content: {
       type: String,
       required: true,
