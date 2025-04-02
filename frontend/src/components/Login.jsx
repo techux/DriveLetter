@@ -30,7 +30,7 @@ const Login = () => {
           setIsValidToken(false);
         }
       } catch (err) {
-        console.log(err);
+        console.log(`Error in logging user: ${err}`);
         setIsValidToken(false);
       }
     }
@@ -45,20 +45,21 @@ const Login = () => {
 
   if (error || hasInvalidParams) {
     return (
-      <div>
-        <h1>Login Page</h1>
-        <p className="text-red-500">Login Failed: {error}</p>
+      <div className="flex justify-center items-center h-screen">
+        {/* <h1>Login Page</h1> */}
+        <p className="text-red-500 text-xl">Login Failed: {error}</p>
+        
       </div>
     );
   }
 
   return (
-    <div>
-      <h1>Login Page</h1>
+    <div className="flex justify-center items-center h-screen">
+      {/* <h1>Login Page</h1> */}
       {isValidToken ? (
-        <p className="text-green-500">Login Success</p>
+        <p className="text-green-500 text-xl">Login Success</p>
       ) : (
-        <p className="text-yellow-500">Invalid or expired token</p>
+        <p className="text-yellow-500 text-xl">Invalid or expired token</p>
       )}
     </div>
   );
