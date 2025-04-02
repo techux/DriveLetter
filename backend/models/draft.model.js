@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const letterSchema = new mongoose.Schema(
+const draftSchema = new mongoose.Schema(
   {
-    fileId: {
-      type: String,
-      required: true,
-    },
     filename: {
       type: String,
       default: `DriveLetter_${Date.now()}`
+    },
+    content: {
+      type: String,
+      required: true,
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
@@ -22,6 +22,6 @@ const letterSchema = new mongoose.Schema(
   }
 );
 
-const Letter = mongoose.model("Letter", letterSchema);
+const Draft = mongoose.model("Draft", draftSchema);
 
-module.exports = Letter;
+module.exports = Draft;
