@@ -11,7 +11,7 @@ router.get(
     scope: [
       "profile",
       "email",
-      // "https://www.googleapis.com/auth/drive.file"
+      "https://www.googleapis.com/auth/drive.file"
     ],
   })
 );
@@ -65,11 +65,10 @@ router.get("/google/callback", (req, res, next) => {
 });
 
 router.get("/logout", (req, res) => {
-  req.logout((err) => { // Adding a callback to logout
+  req.logout((err) => { 
     if (err) {
       return res.status(500).json({ error: "Logout failed", details: err });
     }
-    // res.redirect("/"); // Redirect after successful logout
     return res.json({ message: "Logged out successfully" });
   });
 });
