@@ -166,8 +166,6 @@ const Homepage = () => {
 
   return (
     <div className="min-h-screen">
-      <nav className="bg-blue-500 p-4 text-white">Navbar</nav>
-
       <div className="container mx-auto p-4">
         <div className="space-y-4">
           <div className="flex space-x-4">
