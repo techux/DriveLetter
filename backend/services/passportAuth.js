@@ -2,10 +2,10 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const User = require("../models/user.model");
 
-const loginHandler = async ( request, accessToken, refreshToken, profile, done ) => {
-  let user = await User.findOne({ email: profile.email });
+const loginHandler = async ( request, accessToken, refreshToken, profile, done ) => {  
+  let userExist = await User.findOne({ email: profile.email });
 
-  if (!user) {
+  if (!userExist) {
     user = await User.create({
       name: profile.displayName,
       email: profile.email,
@@ -13,6 +13,12 @@ const loginHandler = async ( request, accessToken, refreshToken, profile, done )
       refreshToken: refreshToken
     });
   }
+
+  const user = await User.findByIdAndUpdate(
+    userExist._id, 
+    { accessToken: accessToken },
+    { new: true }
+  )  
 
   return done(null, user);
 };
