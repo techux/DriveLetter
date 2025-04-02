@@ -28,7 +28,6 @@ const MyLetter = () => {
 
   return (
     <div>
-      {console.log(letters)}
       <nav className="bg-blue-500 p-4">Navbar</nav>
 
       <h2 className="text-4xl font-semibold text-center mt-5">My Letters</h2>
@@ -38,7 +37,7 @@ const MyLetter = () => {
           <thead>
             <tr className="bg-gray-700 rounded-lg text-center">
               <th className="px-2 py-2 font-semibold">S.No.</th>
-              <th className="px-2 py-2 font-semibold">Content</th>
+              <th className="px-2 py-2 font-semibold">Filename</th>
               <th className="px-2 py-2 font-semibold">Action</th>
             </tr>
           </thead>
@@ -48,7 +47,8 @@ const MyLetter = () => {
               <tr key={letter._id} className="text-center">
                 <td className="px-2 py-2">{idx + 1}</td>
                 <td className="px-2 py-2 max-w-[25rem] truncate">
-                  {letter.content}
+                  {letter.filename}
+                    {/* <div dangerouslySetInnerHTML={{ __html: letter.content }} /> */}
                 </td>
 
                 <td className="px-2 py-2 space-x-2">
