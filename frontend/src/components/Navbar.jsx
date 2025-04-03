@@ -5,8 +5,8 @@ import Logout from "./Logout";
 const Navbar = () => {
   return (
     <div>
-      <nav className="bg-blue-500 p-2 flex items-center justify-between">
-        <div className="text-xl font-bold text-white bg-yellow-500 p-2 rounded-md">
+      <nav className="bg-blue-500 p-1 flex items-center justify-between">
+        <div className="text-xl font-bold text-white bg-yellow-500 p-1 rounded-md">
           DriveLetter
         </div>
 
