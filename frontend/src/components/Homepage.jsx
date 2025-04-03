@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import Editor from "react-simple-wysiwyg";
+import Navbar from "./Navbar";
 
 const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -166,6 +167,7 @@ const Homepage = () => {
 
   return (
     <div className="min-h-screen">
+      <Navbar />
       <div className="container mx-auto p-4">
         <div className="space-y-4">
           <div className="flex space-x-4">
@@ -177,7 +179,6 @@ const Homepage = () => {
             </Link>
           </div>
 
-          {/* Textarea */}
           <div className="mt-4">
             {/* <textarea
               value={letter}
